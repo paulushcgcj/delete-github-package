@@ -1,6 +1,6 @@
 {
 	"name": "delete-github-action",
-	"version": "1.0.0",
+	"version": "0.0.0",
 	"description": "Deletes the package on your repository or inside the provided repository",
 	"main": "dist/index.js",
 	"scripts": {

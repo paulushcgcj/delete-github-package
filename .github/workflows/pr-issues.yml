@@ -120,7 +120,7 @@ jobs:
       - name: Running CI
         run: npm ci
       - name: Setting version
-        run: npm version ${{ needs.pr-validation.outputs.version }}.PR${{ github.event.number }} --no-git-tag-version
+        run: npm version ${{ needs.pr-validation.outputs.version }}-PR${{ github.event.number }} --no-git-tag-version
 
       - name: Publishing content
         run: npm publish
@@ -133,4 +133,4 @@ jobs:
         with:
           type: maven
           name: io.github.paulushcgcj.sample.sample-app
-          version: ${{ needs.pr-validation.outputs.version }}.PR${{ github.event.number }}
+          version: ${{ needs.pr-validation.outputs.version }}-PR${{ github.event.number }}
