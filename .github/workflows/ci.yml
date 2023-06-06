@@ -93,4 +93,4 @@ jobs:
             -Dsonar.exclusions=**/coverage/**/*,**/dist/**/*,**/tests/**/*
             -Dsonar.organization=paulushcgcj-github
             -Dsonar.projectKey=paulushcgcj_delete-github-package
-            -Dsonar.projectName="Delete Package from Github"
+            -Dsonar.projectName="Delete_Package_from_Github"
