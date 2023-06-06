@@ -15,7 +15,7 @@ concurrency:
 
 jobs:
   codeql:
-    name: Semantic Code Analysis
+    name: Release
     runs-on: ubuntu-22.04    
     permissions:
       actions: read
@@ -25,15 +25,27 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Initialize
-        uses: github/codeql-action/init@v2
+      - name: Conventional Changelog Update
+        continue-on-error: true
+        uses: TriPSs/conventional-changelog-action@v3
+        id: changelog
         with:
-          languages: javascript
+          github-token: ${{ github.token }}
+          output-file: "CHANGELOG.md"
+          skip-version-file: "true"
+          skip-commit: "true"
+          git-push: "false"
+          skip-on-empty: "false"
+          git-branch: refs/heads/${{ github.head_ref }}
 
-      - name: Build Frontend
-        run: |          
-          npm ci
-          npm run package
-
-      - name: Perform CodeQL Analysis
-        uses: github/codeql-action/analyze@v2
+      - name: Create a release
+        uses: actions/create-release@v1
+        id: create_release
+        with:
+          draft: false
+          prerelease: false
+          release_name: v${{ steps.changelog.outputs.version }}
+          tag_name: v${{ steps.changelog.outputs.version }}
+          body: ${{ steps.changelog.outputs.clean_changelog }}
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
