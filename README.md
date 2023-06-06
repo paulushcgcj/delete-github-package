@@ -1,6 +1,6 @@
-# Hello world javascript action
+# Delete Github Package
 
-This action prints "Hello World" or "Hello" + the name of a person to greet to the log.
+This action will remove packages from the same repo used to run it
 
 ## Inputs
 
