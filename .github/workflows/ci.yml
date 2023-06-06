@@ -79,11 +79,11 @@ jobs:
           GITHUB_TOKEN: ${{ github.token }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         with:
-        args: >
-          -Dsonar.pullrequest.github.summary_comment=true
-          -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info
-          -Dsonar.exclusions=**/coverage/**/*,**/dist/**/*,**/tests/**/*
-          -Dsonar.organization=paulushcgcj-github
-          -Dsonar.projectKey=paulushcgcj_delete-github-package
-          -Dsonar.projectName=Delete Package from Github
-          -Dsonar.projectVersion=${{ steps.package-json-endpoint.outputs.endpoint }}
+          args: >
+            -Dsonar.pullrequest.github.summary_comment=true
+            -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info
+            -Dsonar.exclusions=**/coverage/**/*,**/dist/**/*,**/tests/**/*
+            -Dsonar.organization=paulushcgcj-github
+            -Dsonar.projectKey=paulushcgcj_delete-github-package
+            -Dsonar.projectName=Delete Package from Github
+            -Dsonar.projectVersion=${{ steps.package-json-endpoint.outputs.endpoint }}
