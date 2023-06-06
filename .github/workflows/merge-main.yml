@@ -47,9 +47,6 @@ jobs:
           name: v${{ steps.changelog.outputs.version }}
           tag_name: v${{ steps.changelog.outputs.version }}
           body: ${{ steps.changelog.outputs.clean_changelog }}
-          token: ${{ github.token }}
-          files: |
-            lib/licenses.txt
-            LICENSE
+          token: ${{ github.token }}          
         env:
           GITHUB_TOKEN: ${{ github.token }}
