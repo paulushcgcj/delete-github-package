@@ -73,6 +73,16 @@ jobs:
         uses: dutscher/read-package-json-endpoint-actions@v1.33.7
         id: package-json-endpoint
 
+      - name: Setting up node 16
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          registry-url: https://npm.pkg.github.com/
+          scope: '@paulushcgcj'
+
+      - name: Running CI
+        run: npm ci
+
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@v1.9.1
         env:
