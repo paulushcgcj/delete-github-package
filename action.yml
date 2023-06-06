@@ -1,13 +1,13 @@
-name: 'Delete Package from Github'
-description: 'Delete a github package'
+name: "Delete Package from Github"
+description: "Delete a github package"
 
 inputs:
-  token:  # github token or personal token
-    description: 'github token or personal token'
+  token: # github token or personal token
+    description: "github token or personal token"
     required: true
   type:
-    description: 'type of package'
+    description: "type of package"
 
 runs:
-  using: 'node16'
-  main: 'index.js'
+  using: "node16"
+  main: "index.js"
