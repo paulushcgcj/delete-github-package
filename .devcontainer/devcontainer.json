@@ -1,0 +1,33 @@
+{
+  "name": "Node.js & TypeScript",
+  "image": "mcr.microsoft.com/devcontainers/typescript-node:0-18",
+  "features": {
+    "ghcr.io/devcontainers-contrib/features/vue-cli:2": {
+      "version": "latest"
+    }
+  },
+  "forwardPorts": [],
+  "postCreateCommand": "npm install",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "esbenp.prettier-vscode",
+        "rvest.vs-code-prettier-eslint"
+      ],
+      "settings": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.formatOnSave": false,
+        "editor.tabSize": 2,
+        "[javascript]": {
+          "editor.formatOnSave": false
+        },
+        "editor.codeActionsOnSave": {
+          "source.fixAll.eslint": true
+        },
+        "files.eol": "\n",
+        "prettier.printWidth": 999999,
+        "files.autoSave": "afterDelay"
+      }
+    }
+  }
+}
