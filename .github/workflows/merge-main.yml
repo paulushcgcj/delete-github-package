@@ -39,13 +39,17 @@ jobs:
           git-branch: refs/heads/${{ github.head_ref }}
 
       - name: Create a release
-        uses: actions/create-release@v1
+        uses: softprops/action-gh-release@v1
         id: create_release
         with:
           draft: false
           prerelease: false
-          release_name: v${{ steps.changelog.outputs.version }}
+          name: v${{ steps.changelog.outputs.version }}
           tag_name: v${{ steps.changelog.outputs.version }}
           body: ${{ steps.changelog.outputs.clean_changelog }}
+          token: ${{ github.token }}
+          files: |
+            lib/licenses.txt
+            LICENSE
         env:
           GITHUB_TOKEN: ${{ github.token }}
