@@ -5,14 +5,14 @@
 	"main": "dist/index.js",
 	"scripts": {
 		"start": "npm run build && node out/index.js",
-		"prebuild": "npm run lint:eslint && npm run lint:prettier",
 		"build": "tsc",
 		"lint:eslint": "eslint ./src --ext .ts",
 		"lint:eslint:sarif": "eslint ./src --ext .ts --format @microsoft/eslint-formatter-sarif --output-file eslint-results.sarif",
 		"lint:eslint:fix": "eslint ./src --ext .ts --fix",
 		"lint:prettier": "prettier --write \"src/*.{ts,tsx}\"",
-		"prepackage": "rm -rf dist/",
-		"package": "npm run build"
+		"package": "ncc build --source-map --license licenses.txt",
+		"prebuild": "npm run lint:eslint && npm run lint:prettier",
+		"prepackage": "rm -rf dist/ && npm run build"
 	},
 	"author": "Paulo Gomes da Cruz Junior",
 	"license": "Apache-2.0",

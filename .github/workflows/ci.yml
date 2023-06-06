@@ -74,7 +74,7 @@ jobs:
         id: package-json-endpoint
 
       - name: SonarCloud Scan
-        uses: SonarSource/sonarcloud-github-action@1.8
+        uses: SonarSource/sonarcloud-github-action@1.9.1
         env:
           GITHUB_TOKEN: ${{ github.token }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
