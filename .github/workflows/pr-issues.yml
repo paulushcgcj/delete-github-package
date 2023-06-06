@@ -111,6 +111,17 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
+      - name: Test action
+        id: action
+        continue-on-error: true
+        uses: ./
+        with:
+          org: ${{ github.repository_owner }}
+          token: ${{ github.token }}
+          type: npm
+          name: delete-github-package
+          version: ${{ needs.pr-validation.outputs.version }}-PR${{ github.event.number }}
+
       - name: Setting up node 16
         uses: actions/setup-node@v3
         with:
