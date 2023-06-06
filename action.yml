@@ -9,8 +9,8 @@ inputs:
   type:
     description: "type of package"
     required: true  
-  org:
-    description: "organization name to query the package. Default to the owner of the repo"
+  user:
+    description: "organization/user name to query the package. Default to the owner of the repo"
     required: true
     default: ${{ github.repository_owner }}
   name:

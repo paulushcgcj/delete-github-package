@@ -12,9 +12,9 @@ This action will remove packages from the provided repo org.
 
 **Required** The Type of the package. Can be one of container, maven, npm, nuget, or rubygems.
 
-### `org`
+### `user`
 
-**Required** The organization name to query the package. Default to `"${{ github.repository_owner }}"`
+**Required** The organization/user name to query the package. Default to `"${{ github.repository_owner }}"`
 
 ### `name`
 
@@ -33,5 +33,5 @@ with:
   type: maven
   name: io.github.paulushcgcj.sample.sample-app
   version: 1.3.5-RC1
-  org: ${{ github.repository_owner }}
+  user: ${{ github.repository_owner }}
 ```

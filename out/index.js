@@ -37,7 +37,7 @@ class LocalEnvironment {
     constructor() {
         dotenv.config();
         this.token = process.env.TOKEN || '';
-        this.org = process.env.ORG || '';
+        this.user = process.env.USER || '';
         this.name = process.env.PACKAGENAME || '';
         this.version = process.env.VERSION || '';
         this.type = process.env.TYPE || '';
@@ -46,7 +46,7 @@ class LocalEnvironment {
 class ActionsEnvironment {
     constructor() {
         this.token = core.getInput('token', { required: true });
-        this.org = core.getInput('org', { required: true });
+        this.user = core.getInput('user', { required: true });
         this.name = core.getInput('name', { required: true });
         this.version = core.getInput('version', { required: true });
         this.type = core.getInput('type', { required: true });
@@ -96,7 +96,7 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.deleteProject = exports.deletePackage = exports.getProjectPackages = void 0;
 const axios_1 = __importDefault(__nccwpck_require__(8757));
 const getProjectPackages = (configuration) => __awaiter(void 0, void 0, void 0, function* () {
-    const url = `https://api.github.com/orgs/${configuration.org}/packages/${configuration.type}/${configuration.name}/versions`;
+    const url = `https://api.github.com/users/${configuration.user}/packages/${configuration.type}/${configuration.name}/versions`;
     try {
         const response = yield (0, axios_1.default)({
             method: 'GET',
@@ -113,10 +113,10 @@ const getProjectPackages = (configuration) => __awaiter(void 0, void 0, void 0, 
         if (axios_1.default.isAxiosError(error)) {
             if (error.response) {
                 if (error.response.status === 404) {
-                    return Promise.reject(`No packages found for org ${configuration.org} with name ${configuration.name}`);
+                    return Promise.reject(`No packages found for user ${configuration.user} with name ${configuration.name}`);
                 }
                 else {
-                    return Promise.reject(`Failed to load from org ${configuration.org} with name ${configuration.name}: status ${error.response.status}`);
+                    return Promise.reject(`Failed to load for user ${configuration.user} with name ${configuration.name}: status ${error.response.status}`);
                 }
             }
             else if (error.request) {
@@ -133,7 +133,7 @@ const getProjectPackages = (configuration) => __awaiter(void 0, void 0, void 0, 
 });
 exports.getProjectPackages = getProjectPackages;
 const deletePackage = (configuration, packageInfo) => __awaiter(void 0, void 0, void 0, function* () {
-    const url = `https://api.github.com/orgs/${configuration.org}/packages/${configuration.type}/${configuration.name}/versions/${packageInfo.id}`;
+    const url = `https://api.github.com/users/${configuration.user}/packages/${configuration.type}/${configuration.name}/versions/${packageInfo.id}`;
     try {
         yield (0, axios_1.default)({
             method: 'DELETE',
@@ -153,7 +153,7 @@ const deletePackage = (configuration, packageInfo) => __awaiter(void 0, void 0, 
                     return (0, exports.deleteProject)(configuration);
                 }
                 else {
-                    return Promise.reject(`Failed to remove ${packageInfo.name} from org ${configuration.org} with name ${configuration.name}: status ${error.response.status}`);
+                    return Promise.reject(`Failed to remove ${packageInfo.name} for user ${configuration.user} with name ${configuration.name}: status ${error.response.status}`);
                 }
             }
             else if (error.request) {
@@ -170,7 +170,7 @@ const deletePackage = (configuration, packageInfo) => __awaiter(void 0, void 0, 
 });
 exports.deletePackage = deletePackage;
 const deleteProject = (configuration) => __awaiter(void 0, void 0, void 0, function* () {
-    const url = `https://api.github.com/orgs/${configuration.org}/packages/${configuration.type}/${configuration.name}`;
+    const url = `https://api.github.com/users/${configuration.user}/packages/${configuration.type}/${configuration.name}`;
     try {
         yield (0, axios_1.default)({
             method: 'DELETE',
@@ -186,7 +186,7 @@ const deleteProject = (configuration) => __awaiter(void 0, void 0, void 0, funct
     catch (error) {
         if (axios_1.default.isAxiosError(error)) {
             if (error.response) {
-                return Promise.reject(`Failed to remove org ${configuration.org} with name ${configuration.name}: status ${error.response.status}`);
+                return Promise.reject(`Failed to remove user ${configuration.user} with name ${configuration.name}: status ${error.response.status}`);
             }
             else if (error.request) {
                 return Promise.reject('No response received from server:');

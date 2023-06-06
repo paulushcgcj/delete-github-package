@@ -4,7 +4,7 @@ import type { EnvironmentConfig, PackageInfo } from './dtos';
 export const getProjectPackages = async (
 	configuration: EnvironmentConfig
 ): Promise<PackageInfo[]> => {
-	const url = `https://api.github.com/orgs/${configuration.org}/packages/${configuration.type}/${configuration.name}/versions`;
+	const url = `https://api.github.com/users/${configuration.user}/packages/${configuration.type}/${configuration.name}/versions`;
 
 	try {
 		const response: AxiosResponse<PackageInfo[]> = await axios({
@@ -23,11 +23,11 @@ export const getProjectPackages = async (
 			if (error.response) {
 				if (error.response.status === 404) {
 					return Promise.reject(
-						`No packages found for org ${configuration.org} with name ${configuration.name}`
+						`No packages found for user ${configuration.user} with name ${configuration.name}`
 					);
 				} else {
 					return Promise.reject(
-						`Failed to load from org ${configuration.org} with name ${configuration.name}: status ${error.response.status}`
+						`Failed to load for user ${configuration.user} with name ${configuration.name}: status ${error.response.status}`
 					);
 				}
 			} else if (error.request) {
@@ -45,7 +45,7 @@ export const deletePackage = async (
 	configuration: EnvironmentConfig,
 	packageInfo: PackageInfo
 ): Promise<void> => {
-	const url = `https://api.github.com/orgs/${configuration.org}/packages/${configuration.type}/${configuration.name}/versions/${packageInfo.id}`;
+	const url = `https://api.github.com/users/${configuration.user}/packages/${configuration.type}/${configuration.name}/versions/${packageInfo.id}`;
 
 	try {
 		await axios({
@@ -65,7 +65,7 @@ export const deletePackage = async (
 					return deleteProject(configuration);
 				} else {
 					return Promise.reject(
-						`Failed to remove ${packageInfo.name} from org ${configuration.org} with name ${configuration.name}: status ${error.response.status}`
+						`Failed to remove ${packageInfo.name} for user ${configuration.user} with name ${configuration.name}: status ${error.response.status}`
 					);
 				}
 			} else if (error.request) {
@@ -82,7 +82,7 @@ export const deletePackage = async (
 export const deleteProject = async (
 	configuration: EnvironmentConfig
 ): Promise<void> => {
-	const url = `https://api.github.com/orgs/${configuration.org}/packages/${configuration.type}/${configuration.name}`;
+	const url = `https://api.github.com/users/${configuration.user}/packages/${configuration.type}/${configuration.name}`;
 
 	try {
 		await axios({
@@ -99,7 +99,7 @@ export const deleteProject = async (
 		if (axios.isAxiosError(error)) {
 			if (error.response) {
 				return Promise.reject(
-					`Failed to remove org ${configuration.org} with name ${configuration.name}: status ${error.response.status}`
+					`Failed to remove user ${configuration.user} with name ${configuration.name}: status ${error.response.status}`
 				);
 			} else if (error.request) {
 				return Promise.reject('No response received from server:');

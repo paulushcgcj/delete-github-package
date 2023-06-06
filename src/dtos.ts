@@ -1,6 +1,6 @@
 export interface EnvironmentConfig {
 	token: string;
-	org: string;
+	user: string;
 	name: string;
 	version: string;
 	type: string;

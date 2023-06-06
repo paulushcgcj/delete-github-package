@@ -4,7 +4,7 @@ import { type EnvironmentConfig } from './dtos';
 
 class LocalEnvironment implements EnvironmentConfig {
 	token: string;
-	org: string;
+	user: string;
 	name: string;
 	version: string;
 	type: string;
@@ -13,7 +13,7 @@ class LocalEnvironment implements EnvironmentConfig {
 		dotenv.config();
 
 		this.token = process.env.TOKEN || '';
-		this.org = process.env.ORG || '';
+		this.user = process.env.USER || '';
 		this.name = process.env.PACKAGENAME || '';
 		this.version = process.env.VERSION || '';
 		this.type = process.env.TYPE || '';
@@ -22,14 +22,14 @@ class LocalEnvironment implements EnvironmentConfig {
 
 class ActionsEnvironment implements EnvironmentConfig {
 	token: string;
-	org: string;
+	user: string;
 	name: string;
 	version: string;
 	type: string;
 
 	constructor() {
 		this.token = core.getInput('token', { required: true });
-		this.org = core.getInput('org', { required: true });
+		this.user = core.getInput('user', { required: true });
 		this.name = core.getInput('name', { required: true });
 		this.version = core.getInput('version', { required: true });
 		this.type = core.getInput('type', { required: true });

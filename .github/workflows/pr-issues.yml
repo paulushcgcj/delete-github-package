@@ -128,7 +128,7 @@ jobs:
         continue-on-error: true
         uses: ./
         with:
-          org: ${{ github.repository_owner }}
+          user: ${{ github.repository_owner }}
           token: ${{ github.token }}
           type: npm
           name: delete-github-package
@@ -143,7 +143,7 @@ jobs:
       - name: Test action        
         uses: ./
         with:
-          org: ${{ github.repository_owner }}
+          user: ${{ github.repository_owner }}
           token: ${{ github.token }}
           type: npm
           name: delete-github-package
