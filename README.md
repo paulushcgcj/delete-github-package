@@ -6,7 +6,7 @@ This action will remove packages from the provided repo org.
 
 ### `token`
 
-**Required** The github token or personal token. Default to `" ${{ github.token }}"`.
+**Required** The github token or personal token. Default to `"${{ github.token }}"`.
 
 ### `type`
 
@@ -29,7 +29,9 @@ This action will remove packages from the provided repo org.
 ```yaml
 uses: paulushcgcj/delete-github-package@v1.0.0
 with:
+  token: ${{ github.token }}
   type: maven
   name: io.github.paulushcgcj.sample.sample-app
   version: 1.3.5-RC1
+  org: ${{ github.repository_owner }}
 ```

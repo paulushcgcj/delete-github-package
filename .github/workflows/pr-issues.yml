@@ -132,6 +132,8 @@ jobs:
         id: action
         uses: ./
         with:
-          type: maven
-          name: io.github.paulushcgcj.sample.sample-app
+          org: ${{ github.repository_owner }}
+          token: ${{ github.token }}
+          type: npm
+          name: delete-github-package
           version: ${{ needs.pr-validation.outputs.version }}-PR${{ github.event.number }}
