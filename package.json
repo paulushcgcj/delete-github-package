@@ -1,5 +1,5 @@
 {
-	"name": "delete-github-action",
+	"name": "@paulushcgcj/delete-github-package",
 	"version": "0.0.0",
 	"description": "Deletes the package on your repository or inside the provided repository",
 	"main": "dist/index.js",
