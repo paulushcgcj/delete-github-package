@@ -130,9 +130,9 @@ jobs:
         with:
           user: ${{ github.repository_owner }}
           token: ${{ github.token }}
-          type: npm
-          name: delete-github-package
-          version: ${{ needs.pr-validation.outputs.version }}-PR${{ github.event.number }}
+          type: maven
+          name: io.github.paulushcgj.simple-webflux
+          version: 3.4.2
 
 
       - name: Publishing content
