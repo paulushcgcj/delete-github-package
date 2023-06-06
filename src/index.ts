@@ -4,6 +4,8 @@ import type { EnvironmentConfig, PackageInfo } from './dtos';
 
 const config: EnvironmentConfig = getEnvironmentConfig();
 
+console.log(`Loading Runner on ${process.env.NODE_ENV}`);
+
 getProjectPackages(config)
 	.then((packageInfos: PackageInfo[]) => {
 		if (packageInfos.length > 0) {

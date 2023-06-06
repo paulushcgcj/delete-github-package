@@ -42,7 +42,7 @@ class ActionsEnvironment implements EnvironmentConfig {
 }
 
 export const getEnvironmentConfig = (): EnvironmentConfig => {
-	if (process.env.NODE_ENV === 'development') {
+	if ('development' !== process.env.NODE_ENV) {
 		return new ActionsEnvironment();
 	}
 	return new LocalEnvironment();
@@ -50,7 +50,7 @@ export const getEnvironmentConfig = (): EnvironmentConfig => {
 
 export const setError = (errorMessage: string): void => {
 	console.log(errorMessage);
-	if (process.env.NODE_ENV !== 'development') {
+	if ('development' !== process.env.NODE_ENV) {
 		core.setFailed(errorMessage);
 	}
 };
