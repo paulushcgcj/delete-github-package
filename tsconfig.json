@@ -1,7 +1,6 @@
 {
   "compilerOptions": {
     /* Visit https://aka.ms/tsconfig to read more about this file */
-
     "target": "ES6",
     "module": "commonjs",
     "strict": true,
@@ -11,9 +10,18 @@
     "resolveJsonModule": true,
     "declaration": true,
     "sourceMap": true,
-    "outDir": "out",
-    "rootDir": "./src"
+    "outDir": "dist",
+    "rootDir": "./src",
+    "paths": {
+      "@/": [
+        "./"
+      ]
+    }
   },
-  "include": ["src/**/*.ts"],
-  "exclude": ["node_modules"]
+  "include": [
+    "src/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }
