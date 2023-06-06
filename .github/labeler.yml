@@ -1,0 +1,16 @@
+github_actions:
+  - .github/*
+
+tests:  
+  - tests/**/*.spec.ts
+
+source:  
+  - src/**/*.ts
+
+dependencies:
+  - any: ['package-lock.json']
+
+documentation:  
+  - docs/**/*
+  - README.md
+  - action.yml
