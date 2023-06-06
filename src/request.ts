@@ -49,8 +49,9 @@ export const deletePackage = async (
 
 	try {
 		await axios({
-			method: 'DELETE',
-			url,
+			method: 'delete',
+			maxBodyLength: Infinity,
+			url: url,
 			headers: {
 				Accept: 'application/vnd.github+json',
 				Authorization: `Bearer ${configuration.token}`,

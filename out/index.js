@@ -136,8 +136,9 @@ const deletePackage = (configuration, packageInfo) => __awaiter(void 0, void 0, 
     const url = `https://api.github.com/users/${configuration.user}/packages/${configuration.type}/${configuration.name}/versions/${packageInfo.id}`;
     try {
         yield (0, axios_1.default)({
-            method: 'DELETE',
-            url,
+            method: 'delete',
+            maxBodyLength: Infinity,
+            url: url,
             headers: {
                 Accept: 'application/vnd.github+json',
                 Authorization: `Bearer ${configuration.token}`,
