@@ -10,7 +10,7 @@
 		"lint:eslint:sarif": "eslint ./src --ext .ts --format @microsoft/eslint-formatter-sarif --output-file eslint-results.sarif",
 		"lint:eslint:fix": "eslint ./src --ext .ts --fix",
 		"lint:prettier": "prettier --write \"src/*.{ts,tsx}\"",
-		"package": "ncc build --source-map --license licenses.txt -o lib",
+		"package": "ncc build --source-map --license licenses.txt -o out",
 		"prebuild": "npm run lint:eslint && npm run lint:prettier",
 		"prepackage": "rm -rf dist/ && npm run build"
 	},
