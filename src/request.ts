@@ -65,7 +65,7 @@ export const deletePackage = async (
 					return deleteProject(configuration);
 				} else {
 					return Promise.reject(
-						`Failed to remove ${packageInfo.name} for user ${configuration.user} with name ${configuration.name}: status ${error.response.status}`
+						`Failed to remove ${packageInfo.name} with id ${packageInfo.id} for user ${configuration.user} with name ${configuration.name}: status ${error.response.status}`
 					);
 				}
 			} else if (error.request) {

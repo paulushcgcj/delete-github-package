@@ -153,7 +153,7 @@ const deletePackage = (configuration, packageInfo) => __awaiter(void 0, void 0, 
                     return (0, exports.deleteProject)(configuration);
                 }
                 else {
-                    return Promise.reject(`Failed to remove ${packageInfo.name} for user ${configuration.user} with name ${configuration.name}: status ${error.response.status}`);
+                    return Promise.reject(`Failed to remove ${packageInfo.name} with id ${packageInfo.id} for user ${configuration.user} with name ${configuration.name}: status ${error.response.status}`);
                 }
             }
             else if (error.request) {
