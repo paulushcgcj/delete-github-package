@@ -16,11 +16,7 @@ concurrency:
 jobs:
   codeql:
     name: Release
-    runs-on: ubuntu-22.04    
-    permissions:
-      actions: read
-      contents: read
-      security-events: write
+    runs-on: ubuntu-22.04        
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
