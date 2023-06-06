@@ -5,9 +5,21 @@ inputs:
   token: # github token or personal token
     description: "github token or personal token"
     required: true
+    default:  ${{ github.token }}
   type:
     description: "type of package"
+    required: true  
+  user:
+    description: "organization/user name to query the package. Default to the owner of the repo"
+    required: true
+    default: ${{ github.repository_owner }}
+  name:
+    description: "name of the package"
+    required: true
+  version:
+    description: "version of package to be removed. Ex: 1.2.4"
+    required: true
 
 runs:
   using: "node16"
-  main: "index.js"
+  main: "out/index.js"
