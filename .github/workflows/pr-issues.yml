@@ -124,17 +124,6 @@ jobs:
         run: npm version ${{ needs.pr-validation.outputs.version }}-PR${{ github.event.number }} --no-git-tag-version
       - run: npm run package
 
-      - name: Pre-Test action
-        continue-on-error: true
-        uses: ./
-        with:
-          user: ${{ github.repository_owner }}
-          token: ${{ github.token }}
-          type: maven
-          name: io.github.paulushcgj.simple-webflux
-          version: 3.4.2
-
-
       - name: Publishing content
         run: npm publish
         env:
