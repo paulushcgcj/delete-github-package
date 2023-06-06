@@ -111,16 +111,6 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Test action
-        continue-on-error: true
-        uses: ./
-        with:
-          org: ${{ github.repository_owner }}
-          token: ${{ github.token }}
-          type: npm
-          name: delete-github-package
-          version: ${{ needs.pr-validation.outputs.version }}-PR${{ github.event.number }}
-
       - name: Setting up node 16
         uses: actions/setup-node@v3
         with:
@@ -132,6 +122,18 @@ jobs:
         run: npm ci
       - name: Setting version
         run: npm version ${{ needs.pr-validation.outputs.version }}-PR${{ github.event.number }} --no-git-tag-version
+      - run: npm run package
+
+      - name: Pre-Test action
+        continue-on-error: true
+        uses: ./
+        with:
+          org: ${{ github.repository_owner }}
+          token: ${{ github.token }}
+          type: npm
+          name: delete-github-package
+          version: ${{ needs.pr-validation.outputs.version }}-PR${{ github.event.number }}
+
 
       - name: Publishing content
         run: npm publish
