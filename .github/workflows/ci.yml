@@ -81,10 +81,6 @@ jobs:
       - name: Running CI
         run: npm ci
 
-      - name: Read package.json
-        uses: dutscher/read-package-json-endpoint-actions@v1.33.7
-        id: package-json-endpoint
-
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@v1.9.1
         env:
@@ -98,4 +94,3 @@ jobs:
             -Dsonar.organization=paulushcgcj-github
             -Dsonar.projectKey=paulushcgcj_delete-github-package
             -Dsonar.projectName=Delete Package from Github
-            -Dsonar.projectVersion=${{ steps.package-json-endpoint.outputs.endpoint }}
