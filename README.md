@@ -27,7 +27,7 @@ This action will remove packages from the provided repo org.
 ## Example usage
 
 ```yaml
-uses: paulushcgcj/delete-github-package@v1.0.0
+uses: paulushcgcj/delete-github-package@1.0.0
 with:
   token: ${{ github.token }}
   type: maven
